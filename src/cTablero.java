@@ -3,6 +3,8 @@ import java.util.Scanner;
 
 public class cTablero {
 
+    //v.3
+
     Scanner leer = new Scanner(System.in);
 
     //Variables constates
