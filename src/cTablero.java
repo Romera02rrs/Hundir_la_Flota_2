@@ -92,7 +92,7 @@ public class cTablero {
         }
     }
 
-
+    //Metodo que coloca los barcos en la posicion escogida
     public void colocaBarcos() {
         int fila;
         int columna;
