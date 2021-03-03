@@ -33,7 +33,7 @@ public class cTablero {
         disparos = new int[FILA][COLUMNA];
     }
 
-    //Metodo que obtiene la posicion de la fila → 1-8
+    //Metodo que obtiene la posicion de la fila ↓ 1-8 o VERTICAL(filas)
     public int leerFila() {
         int posFila;
         System.out.println("Introduce la fila (1 - 8)");
@@ -41,7 +41,7 @@ public class cTablero {
         return posFila -1;
     }
 
-    //metodo que obtiene la posicion de la columna ↓ A-H
+    //metodo que obtiene la posicion de la columna → A-H o HORIZONTAL(columnas)
     public int leerColumna() {
         String posColumnaString;
         int posColumna;
@@ -99,29 +99,33 @@ public class cTablero {
         boolean direccion;
 
         //Colocar el portaAviones
-        fila = leerFila();
         columna = leerColumna();
+        fila = leerFila();
+        //Comprueba que el portaaviones no se introduzcan en las coordenadas prohibidas
+        if (fila > 5 && columna > 5){
+            System.out.println("Error");
+        }
         direccion = leerDireccion();
         //p.colocar(fila, columna, direccion);
-        p.GRANDARIA = 5;
 
-        if (fila > 4 && columna > 4){
+        if (fila > 5 && columna > 5){
             System.out.println("Error");
         }else{
+            //Verdadero es vertical y falso Horizontal
             if(direccion == true){
                 if (fila > 5){
                     System.out.println("Error");
                 }else{
-                    for (int i = 0; i < p.GRANDARIA; i++) {
-                        ocupados[fila][columna+i] = 'P';
+                    for (int i = 0; i < 5; i++) {
+                        ocupados[fila+i][columna] = 'P';
                     }
                 }
             }else{
                 if (columna > 5){
                     System.out.println("Error");
                 }else{
-                    for (int i = 0; i < p.GRANDARIA; i++){
-                        ocupados[fila+1][columna] = 'P';
+                    for (int i = 0; i < 5; i++){
+                        ocupados[fila][columna+i] = 'P';
                     }
                 }
             }
