@@ -3,8 +3,6 @@ import java.util.Scanner;
 
 public class cTablero {
 
-    //v.3
-
     Scanner leer = new Scanner(System.in);
 
     //Variables constates
@@ -35,7 +33,7 @@ public class cTablero {
         disparos = new int[FILA][COLUMNA];
     }
 
-    //Metodo que obtiene la posicion de la fila ↓ 1-8 o VERTICAL(filas)
+    //Metodo que obtiene la posicion de la fila → 1-8
     public int leerFila() {
         int posFila;
         System.out.println("Introduce la fila (1 - 8)");
@@ -43,7 +41,7 @@ public class cTablero {
         return posFila -1;
     }
 
-    //metodo que obtiene la posicion de la columna → A-H o HORIZONTAL(columnas)
+    //metodo que obtiene la posicion de la columna ↓ A-H
     public int leerColumna() {
         String posColumnaString;
         int posColumna;
@@ -94,7 +92,7 @@ public class cTablero {
         }
     }
 
-    //Metodo que coloca los barcos en la posicion escogida
+
     public void colocaBarcos() {
         int fila;
         int columna;
@@ -103,36 +101,98 @@ public class cTablero {
         //Colocar el portaAviones
         columna = leerColumna();
         fila = leerFila();
-        //Comprueba que el portaaviones no se introduzcan en las coordenadas prohibidas
-        if (fila > 5 && columna > 5){
-            System.out.println("Error");
+        //Comprueba que el avion no se introduzca en las posiciones prohibidas > d-4
+        if (fila > 4 && columna > 4){
+            System.out.println("Error, el barco no cabe hacia ninguna posicion");
         }
         direccion = leerDireccion();
         //p.colocar(fila, columna, direccion);
+        //p.GRANDARIA = 5;
 
-        if (fila > 5 && columna > 5){
-            System.out.println("Error");
-        }else{
-            //Verdadero es vertical y falso Horizontal
-            if(direccion == true){
-                if (fila > 5){
-                    System.out.println("Error");
-                }else{
-                    for (int i = 0; i < 5; i++) {
-                        ocupados[fila+i][columna] = 'P';
-                    }
-                }
+        if(direccion == true){ //Direccion true es igual a VERTICAL
+            if (fila > 3){
+                System.out.println("Error, el barco no cabe verticalmente");
+                //System.out.println("Quieres colocarlo de fomra vertical? (S/N)");
+                colocaBarcos();
             }else{
-                if (columna > 5){
-                    System.out.println("Error");
-                }else{
-                    for (int i = 0; i < 5; i++){
-                        ocupados[fila][columna+i] = 'P';
+                for (int i = 0; i < 5 /*p.grandaria*/; i++) {
+                    if(ocupados[fila+i][columna] != ' '){
+                        System.out.println("Error, ya hay un barco en esa posicion");
+                        colocaBarcos();
                     }
                 }
+                for (int i = 0; i < 5 /*p.grandaria*/; i++) {
+                    ocupados[fila+i][columna] = 'P';
+                }
+                mostrarTablero();
+            }
+        }else{
+            if (columna > 3){
+                System.out.println("Error, el barco no cabe horizontalmente");
+                colocaBarcos();
+
+            }else{
+                for (int i = 0; i < 5 /*p.grandaria*/; i++) {
+                    if(ocupados[fila][columna+i] != ' '){
+                        System.out.println("Error, ya hay un barco en esa posicion");
+                        colocaBarcos();
+                    }
+                }
+                for (int i = 0; i < 5 /*p.grandaria*/; i++) {
+                    ocupados[fila][columna+i] = 'P';
+                }
+                mostrarTablero();
+            }
+        }
+
+        //Colocar el buque
+        columna = leerColumna();
+        fila = leerFila();
+        //Comprueba que el avion no se introduzca en las posiciones prohibidas > d-4
+        if (fila > 3 && columna > 3){
+            System.out.println("Error, el barco no cabe hacia ninguna posicion");
+        }
+        direccion = leerDireccion();
+        //p.colocar(fila, columna, direccion);
+        //p.GRANDARIA = 5;
+
+        if(direccion == true){ //Direccion true es igual a VERTICAL
+            if (fila > 2){
+                System.out.println("Error, el barco no cabe verticalmente");
+                //System.out.println("Quieres colocarlo de fomra vertical? (S/N)");
+                colocaBarcos();
+            }else{
+                for (int i = 0; i < 4 /*p.grandaria*/; i++) {
+                    if(ocupados[fila+i][columna] != ' '){
+                        System.out.println("Error, ya hay un barco en esa posicion");
+                        colocaBarcos();
+                    }
+                }
+                for (int i = 0; i < 4 /*b.grandaria*/; i++) {
+                    ocupados[fila+i][columna] = 'B';
+                }
+                mostrarTablero();
+            }
+        }else{
+            if (columna > 2){
+                System.out.println("Error, el barco no cabe horizontalmente");
+                colocaBarcos();
+
+            }else{
+                for (int i = 0; i < 4 /*p.grandaria*/; i++) {
+                    if(ocupados[fila][columna+i] != ' '){
+                        System.out.println("Error, ya hay un barco en esa posicion");
+                        colocaBarcos();
+                    }
+                }
+                for (int i = 0; i < 4 /*b.grandaria*/; i++) {
+                    ocupados[fila][columna+i] = 'B';
+                }
+                mostrarTablero();
             }
         }
     }
+
 
     public int dispara(){
         int posDisparo=0;
