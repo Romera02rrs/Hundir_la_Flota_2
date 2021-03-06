@@ -1,10 +1,18 @@
 public class cBuque extends cBarcos{
 
-    protected int GRANDARIA;
-
     //Constructor de la clase Bucque
     public cBuque(){
 
         GRANDARIA = 4;
+        id = 'B';
+        vida = 4;
+        navegando = true;
+        nombre = "Buque";
+    }
+
+    public void colocar(int f, int c, boolean d){
+        fila = f;
+        columna = c;
+        direccion = d;
     }
 }
